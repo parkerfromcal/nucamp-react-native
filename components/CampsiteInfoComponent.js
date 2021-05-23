@@ -12,6 +12,7 @@ import { Card, Icon, Rating, Input } from "react-native-elements";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import { postFavorite } from "../redux/ActionCreators";
+import { postComment } from "../redux/ActionCreators";
 
 const mapStateToProps = (state) => {
   return {
@@ -23,6 +24,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   postFavorite: (campsiteId) => postFavorite(campsiteId),
+  postComment: (campsiteId, rating, author, text) =>
+    postComment(campsiteId, rating, author, text),
 };
 
 function RenderComments({ comments }) {
@@ -108,7 +111,7 @@ class CampsiteInfo extends Component {
     this.setState({ showModal: !this.state.showModal });
   }
   handleComments(campsiteId) {
-    console.log(JSON.stringify());
+    postComment(campsiteId, rating, author, text);
     this.toggleModal();
   }
   resetForm() {

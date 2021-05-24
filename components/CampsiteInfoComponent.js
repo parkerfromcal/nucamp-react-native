@@ -111,7 +111,12 @@ class CampsiteInfo extends Component {
     this.setState({ showModal: !this.state.showModal });
   }
   handleComments(campsiteId) {
-    postComment(campsiteId, rating, author, text);
+    this.props.postComment(
+      campsiteId,
+      this.state.rating,
+      this.state.author,
+      this.state.text
+    );
     this.toggleModal();
   }
   resetForm() {
@@ -160,7 +165,7 @@ class CampsiteInfo extends Component {
               imageSize={40}
               onFinishRating={(rating) => this.setState({ rating: rating })}
               style={{ paddingVertical: 10 }}
-            ></Rating>
+            />
             <Input
               placeholder="Author"
               leftIcon={{ type: "font-awesome", name: "user-o" }}
